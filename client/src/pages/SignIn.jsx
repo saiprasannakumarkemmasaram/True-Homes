@@ -11,6 +11,7 @@ function SignIn() {
   const {loading ,error} = useSelector((state) => state.user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const PORT= import.meta.env.PORT;
 
   const handleInput = (e) => {
     setuserData({
@@ -20,10 +21,10 @@ function SignIn() {
   }
   
   const handleSubmit = async(e) => {
-    // console.log("ok")
+    console.log("ok")
     e.preventDefault()
       dispatch(signInStart())
-      await fetch('/api/auth/signin',{
+      await fetch(`http://localhost:${PORT}/api/auth/signin`,{
         method: 'POST',
         headers: {
           'content-type': 'application/json'
@@ -32,7 +33,7 @@ function SignIn() {
       })
       .then(res => res.json())
       .then(res => {
-        
+        console.log(res);
         if(res.success === false){
           dispatch(signInFailure(res.message))
           return ;

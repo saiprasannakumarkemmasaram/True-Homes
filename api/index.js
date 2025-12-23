@@ -1,16 +1,19 @@
+
+import dotenv from 'dotenv'
 import express from 'express'
 import mongoose from 'mongoose'
-import dotenv from 'dotenv'
 import authRouter from './routes/auth.route.js'
 import cookieParser from 'cookie-parser'
 import userRouter from './routes/user.route.js'
 import listingRouter from './routes/listing.route.js'
 import path from 'path'
-dotenv.config()
+import cors from 'cors';
 
+dotenv.config()
+// console.log("Mongo URI:", process.env.MONGO);
 mongoose.connect(process.env.MONGO).then(() => {
     console.log('MongoDb is connected');
-  })
+  }) 
   .catch((err) => {
     console.error('MongoDB connection error:', err);
   });
@@ -20,12 +23,15 @@ mongoose.connect(process.env.MONGO).then(() => {
 const app = express()
 
 app.use(express.json())
-app.use(cookieParser())
+app.use(cookieParser())  
+app.use(cors()); 
 
 const PORT = process.env.PORT || 3000;
-
+ 
 app.listen(PORT,() => {
+
         console.log(`Server is running at port ${PORT}`)
+        // console.log(process.env.PORT);
     }
 );
 

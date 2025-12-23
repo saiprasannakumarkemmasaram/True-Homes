@@ -9,5 +9,4 @@ router.delete('/delete/:id',verifyUser,deleteListing)
 router.get('/getlisting/:id',getListing)
 router.post('/updatelisting/:id',verifyUser,updateListing)
 router.get('/getlistings',getListings)
-
 export default router

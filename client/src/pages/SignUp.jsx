@@ -9,6 +9,7 @@ function SignUp() {
   const [error,seterror] = useState(null)
   const [loading,setloading] = useState(false)
   const navigate = useNavigate()
+  const PORT = import.meta.env.PORT;
 
   const handleInput = (e) => {
     setuserData({
@@ -22,7 +23,7 @@ function SignUp() {
     e.preventDefault()
     
       setloading(true)
-      await fetch('/api/auth/signup',{
+      await fetch(`http://localhost:${PORT}/api/auth/signup`,{
         method: 'POST',
         headers: {
           'content-type': 'application/json'

@@ -14,6 +14,7 @@ function Search() {
         sort:'created_at',
         order:'desc',
     })
+    const PORT = import.meta.env.PORT; 
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState('')
     const [listings,setListings] = useState([])
@@ -57,7 +58,7 @@ function Search() {
             setError(false)
             try {
                 const searchQuery = urlParams.toString()
-                const res = await fetch(`/api/listing/getlistings?${searchQuery}`)
+                const res = await fetch(`http://localhost:${PORT}/api/listing/getlistings?${searchQuery}`)
                 
                 const data = await res.json()
 
@@ -137,7 +138,7 @@ function Search() {
         const urlParams = new URLSearchParams(window.location.search)
         urlParams.set('startIndex', startIndex)
         const searchQuery = urlParams.toString()
-        const res = await fetch(`/api/listing/getlistings?${searchQuery}`)
+        const res = await fetch(`http://localhost:${PORT}/api/listing/getlistings?${searchQuery}`)
                 
         const data = await res.json()
         setLoading(false)

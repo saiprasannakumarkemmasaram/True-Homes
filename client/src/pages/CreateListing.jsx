@@ -28,6 +28,7 @@ function CreateListing() {
     const [imageUploadError,setImageUploadError] = useState('')
     const [error,setError] = useState(null)
     const navigate = useNavigate()
+    const PORT = import.meta.env.PORT;
 
 
     const handleImageUpload = (e) => {
@@ -134,8 +135,8 @@ function CreateListing() {
         
             setLoading(true);
             setError(null)
-            console.log(formData)
-            const res = await fetch('/api/listing/create',{
+            // console.log(formData)
+            const res = await fetch(`http://localhost:${PORT}/api/listing/create`,{
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json'

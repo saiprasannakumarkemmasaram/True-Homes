@@ -26,13 +26,14 @@ function Listing() {
     const [copied, setCopied] = useState(false);
     const {currentUser} = useSelector((state) => state.user)
     const [contact, setContact] = useState(false)
+    const PORT = import.meta.env.PORT;
 
     useEffect(() => {
         const fecthListing = async() => {
             try {
                 setLoading(true)
                 setError('')
-                const res = await fetch(`/api/listing/getlisting/${params.listingid}`)
+                const res = await fetch(`http://localhost:${PORT}/api/listing/getlisting/${params.listingid}`)
 
                 const data = await res.json()
                 setLoading(false)
